@@ -39,8 +39,11 @@ const gridInit = () =>{
             cell.style.border="1px black solid"
             cell.style.paddingTop = "2px";
             cell.onmousedown=function(){mouseDown()};
+            cell.ontouchstart=function(){mouseDown()};
+            cell.ontouchmove = function(){changeCell(this.id,this.parentElement.id)};
+            cell.ontouchend = function(){mouseUp()};
             cell.onmouseup=function(){mouseUp()};
-            cell.onmouseover=function(){changeCell(this.id,this.parentElement.id)}
+            cell.onmouseover=function(){changeCell(this.id,this.parentElement.id)};
             p.id = "p"+i;
             
             cell.appendChild(p);
