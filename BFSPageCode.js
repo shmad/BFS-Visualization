@@ -110,7 +110,7 @@ function newGrid(rows,cols,grid){
             cell.style.paddingTop = "2px";
             cell.onmousedown=function(){mouseDown()};
             cell.ontouchstart=function(){mouseDown()};
-            cell.ontouchmove = function(){changeCell()};
+            cell.ontouchmove = function(){changeCell(this.id,this.parentElement.id)};
             cell.ontouchend = function(){mouseUp()};
             cell.onmouseup=function(){mouseUp()};
             cell.onmouseover=function(){changeCell(this.id,this.parentElement.id)};
