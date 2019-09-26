@@ -44,6 +44,7 @@ const gridInit = () =>{
             cell.ontouchend = function(){mouseUp()};
             cell.onmouseup=function(){mouseUp()};
             cell.onmouseover=function(){changeCell(this.id,this.parentElement.id)};
+            cell.style.msTouchAction = "none";
             p.id = "p"+i;
             
             cell.appendChild(p);
@@ -117,6 +118,7 @@ function newGrid(rows,cols,grid){
             cell.ontouchend = function(){mouseUp()};
             cell.onmouseup=function(){mouseUp()};
             cell.onmouseover=function(){changeCell(this.id,this.parentElement.id)};
+            cell.style.msTouchAction = "none";
             p.id = "p"+i;
             cell.appendChild(p);
             row.appendChild(cell);
