@@ -40,7 +40,7 @@ const gridInit = () =>{
             cell.style.paddingTop = "2px";
             cell.onmousedown=function(){mouseDown()};
             cell.ontouchstart=function(){mouseDown()};
-            cell.onpointerover = function(){changeCell(this.id,this.parentElement.id)};
+            cell.onpointerenter = function(){changeCell(this.id,this.parentElement.id)};
             cell.ontouchend = function(){mouseUp()};
             cell.onmouseup=function(){mouseUp()};
             
@@ -115,7 +115,7 @@ function newGrid(rows,cols,grid){
             cell.ontouchstart=function(){mouseDown()};
             cell.ontouchend = function(){mouseUp()};
             cell.onmouseup=function(){mouseUp()};
-            cell.onpointerover = function(){changeCell(this.id,this.parentElement.id)};
+            cell.onpointerenter = function(){changeCell(this.id,this.parentElement.id)};
             p.id = "p"+i;
             cell.appendChild(p);
             row.appendChild(cell);
