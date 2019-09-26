@@ -845,7 +845,7 @@ function subTarg(){
     else{
         document.getElementById("Warn").innerHTML = "";
         var mess = document.getElementById("dests").innerHTML;
-            document.getElementById("dests").innerHTML = mess.substring(0,mess.length-1)+(Number(mess.substring(mess.length-1,mess.length))-1);
+        document.getElementById("dests").innerHTML = mess.substring(0,mess.length-1)+(Number(mess.substring(mess.length-1,mess.length))-1);
         subDest();
         if(grid.calculated){
             QSearch(grid.start[0],grid.start[1],1);
@@ -883,7 +883,7 @@ function subDest(){
     var cell = document.getElementById("cell"+(i*grid.cols+j+1));
     var p = document.getElementById("p"+(i*grid.cols+j+1));
     cell.style.backgroundColor = "white";
-    //p.innerHTML = ""+(i*grid.cols+j+1);
+    p.innerHTML = "";
     p.style.color="black";
 }
 function getClosest(r,c){
