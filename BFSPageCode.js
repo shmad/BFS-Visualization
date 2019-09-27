@@ -313,7 +313,8 @@ async function changeCellT(event){
     var nele = document.elementFromPoint(event.touches[0].clientX,event.touches[0].clientY)
     var co = nele.parentElement.id;
     var ro = nele.id;
-    if(nele.id.substring(0,4)=="cell"){
+    console.log(event.touches);
+    if(nele.id.substring(0,4)=="cell" && event.touches.length<2){
         
         var i = Number(co.substring(3,co.length));
         var j = Number(ro.substring(4,ro.length))-1-i*grid.cols;
@@ -365,10 +366,18 @@ async function changeCellT(event){
         }
     
     }
+    else{
+        gridScroll(event);
+    }
     
     
 }
-
+async function griScroll(event){
+    var scrollx1 = event.touches[0].screenX;
+    var scrolly1 = event.touches[0].screenY;
+    await sleep(5);
+    window.scrollBy(scrollx1-event.touches[0].screenX,scrolly1-event.touches[0].screenY);
+}
 
 function mouseDown(){
     isdown = true;
