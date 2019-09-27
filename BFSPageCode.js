@@ -43,11 +43,14 @@ const gridInit = () =>{
             cell.onmouserup=function(){mouseUp()};
             cell.onmouseover=function(){changeCell(this.id,this.parentElement.id)};
             cell.style.touchAction = "none";
+            cell.style.touchAction = "pinch-zoom";
             p.id = "p"+i;
             p.style.touchAction = "none";
+            row.style.touchAction = "none";
+            p.style.touchAction = "pinch-zoom";
             cell.appendChild(p);
             row.appendChild(cell);
-            row.style.touchAction = "none";
+            row.style.touchAction = "pinch-zoom";
             
             i++;
         }
@@ -115,10 +118,12 @@ function newGrid(rows,cols,grid){
             cell.ontouchmove=function(){changeCellT(event)}
             cell.onpointerup=function(){mouseUp()};
             cell.onmouseover=function(){changeCell(this.id,this.parentElement.id)};
-            cell.style.touchAction = "none";
+            cell.style.touchAction = "pinch-zoom";
             p.id = "p"+i;
             p.style.touchAction = "none";
             row.style.touchAction = "none";
+            p.style.touchAction = "pinch-zoom";
+            row.style.touchAction = "pinch-zoom";
             cell.appendChild(p);
             row.appendChild(cell);
             i++;
@@ -1047,5 +1052,6 @@ document.getElementById("clears").onclick = function(){clearGrid()}
 document.getElementById("clrg").onclick = function(){clearObstacles()}
 document.getElementById("contexplanations").style.paddingLeft = Math.floor(window.innerWidth/4)+"px";
 document.getElementById("gridholder").style.touchAction = "none";
+document.getElementById("gridholder").style.touchAction = "pinch-zoom";
 window.onmousedown = function() {mouseDown()};
 window.onmouseup = function(){mouseUp()};
