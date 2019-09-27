@@ -46,7 +46,7 @@ const gridInit = () =>{
             cell.onmouseover=function(){changeCell(this.id,this.parentElement.id)};
             cell.style.msTouchAction = "none";
             p.id = "p"+i;
-            
+            p.style.msTouchAction = "none";
             cell.appendChild(p);
             row.appendChild(cell);
             
@@ -120,6 +120,7 @@ function newGrid(rows,cols,grid){
             cell.onmouseover=function(){changeCell(this.id,this.parentElement.id)};
             cell.style.msTouchAction = "none";
             p.id = "p"+i;
+            p.style.msTouchAction = "none";
             cell.appendChild(p);
             row.appendChild(cell);
             i++;
