@@ -44,12 +44,12 @@ const gridInit = () =>{
             cell.ontouchend = function(){mouseUp()};
             cell.onmouseup=function(){mouseUp()};
             cell.onmouseover=function(){changeCell(this.id,this.parentElement.id)};
-            cell.style.msTouchAction = "none";
+            cell.style.TouchAction = "none";
             p.id = "p"+i;
-            p.style.msTouchAction = "none";
+            p.style.TouchAction = "none";
             cell.appendChild(p);
             row.appendChild(cell);
-            row.style.msTouchAction = "none";
+            row.style.TouchAction = "none";
             
             i++;
         }
@@ -119,10 +119,10 @@ function newGrid(rows,cols,grid){
             cell.ontouchend = function(){mouseUp()};
             cell.onmouseup=function(){mouseUp()};
             cell.onmouseover=function(){changeCell(this.id,this.parentElement.id)};
-            cell.style.msTouchAction = "none";
+            cell.style.TouchAction = "none";
             p.id = "p"+i;
-            p.style.msTouchAction = "none";
-            row.style.msTouchAction = "none";
+            p.style.TouchAction = "none";
+            row.style.TouchAction = "none";
             cell.appendChild(p);
             row.appendChild(cell);
             i++;
@@ -988,6 +988,6 @@ document.getElementById("SubDest").onclick = async function(){subTarg()}
 document.getElementById("clears").onclick = function(){clearGrid()}
 document.getElementById("clrg").onclick = function(){clearObstacles()}
 document.getElementById("contexplanations").style.paddingLeft = Math.floor(window.innerWidth/4)+"px";
-document.getElementById("gridholder").style.msTouchAction = "none";
+document.getElementById("gridholder").style.TouchAction = "none";
 window.onmousedown = function() {mouseDown()};
 window.onmouseup = function(){mouseUp()};
