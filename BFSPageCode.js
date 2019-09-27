@@ -49,6 +49,7 @@ const gridInit = () =>{
             p.style.msTouchAction = "none";
             cell.appendChild(p);
             row.appendChild(cell);
+            row.style.msTouchAction = "none";
             
             i++;
         }
@@ -121,6 +122,7 @@ function newGrid(rows,cols,grid){
             cell.style.msTouchAction = "none";
             p.id = "p"+i;
             p.style.msTouchAction = "none";
+            row.style.msTouchAction = "none";
             cell.appendChild(p);
             row.appendChild(cell);
             i++;
