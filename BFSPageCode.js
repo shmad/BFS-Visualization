@@ -39,11 +39,9 @@ const gridInit = () =>{
             cell.style.border="1px black solid"
             cell.style.paddingTop = "2px";
             cell.onmousedown=function(){mouseDown()};
-            cell.ontouchstart=function(){mouseDown()};
-            
-            cell.ontouchend = function(){mouseUp()};
-            cell.onmouseup=function(){mouseUp()};
-            cell.onpointerover=function(){changeCell(this.id,this.parentElement.id)};
+            cell.ontouchmove=function(){changeCellT(event)}
+            cell.onmouserup=function(){mouseUp()};
+            cell.onmouseover=function(){changeCell(this.id,this.parentElement.id)};
             cell.style.touchAction = "none";
             p.id = "p"+i;
             p.style.touchAction = "none";
@@ -113,12 +111,10 @@ function newGrid(rows,cols,grid){
             cell.style.height="13px";
             cell.style.border="1px black solid"
             cell.style.paddingTop = "2px";
-            cell.onmousedown=function(){mouseDown()};
-            cell.ontouchstart=function(){mouseDown()};
-            
-            cell.ontouchend = function(){mouseUp()};
-            cell.onmouseup=function(){mouseUp()};
-            cell.onpointerover=function(){changeCell(this.id,this.parentElement.id)};
+            cell.onpointerdown=function(){mouseDown()};
+            cell.ontouchmove=function(){changeCellT(event)}
+            cell.onpointerup=function(){mouseUp()};
+            cell.onmouseover=function(){changeCell(this.id,this.parentElement.id)};
             cell.style.touchAction = "none";
             p.id = "p"+i;
             p.style.touchAction = "none";
@@ -307,6 +303,68 @@ async function changeCell(ro,co){
     }
     
 }
+
+async function changeCellT(event){
+    var nele = document.elementFromPoint(event.touches[0].clientX,event.touches[0].clientY)
+    var co = nele.parentElement.id;
+    var ro = nele.id;
+    if(nele.id.substring(0,4)=="cell"){
+        
+        var i = Number(co.substring(3,co.length));
+        var j = Number(ro.substring(4,ro.length))-1-i*grid.cols;
+        
+        
+        if(start&&nele.style.backgroundColor!="red"&&nele.style.backgroundColor!="black"&&nele.style.backgroundColor!="gray"){
+            var oele = document.getElementById("cell"+(grid.start[0]*grid.cols+grid.start[1]+1));
+            document.getElementById("p"+(i*grid.cols+j+1)).innerHTML = "S";
+            document.getElementById("p"+(grid.start[0]*grid.cols+grid.start[1]+1)).innerHTML = ""//+(grid.start[0]*grid.cols+grid.start[1]+1);
+            oele.style.backgroundColor="white";
+            nele.style.backgroundColor="red";
+            grid.start=[i,j];
+            if(grid.calculated){
+                QSearch(grid.start[0],grid.start[1],1);
+            }
+               
+        }
+        else if(end&&nele.style.backgroundColor!="red"&&nele.style.backgroundColor!="black"&&nele.style.backgroundColor!="gray"){
+            var coor = await getClosest(i,j);
+            var oele = document.getElementById("cell"+(coor[0]*grid.cols+coor[1]+1));
+            var temp = document.getElementById("p"+(coor[0]*grid.cols+coor[1]+1)).innerHTML;
+            document.getElementById("p"+(coor[0]*grid.cols+coor[1]+1)).innerHTML=""//+(coor[0]*grid.cols+coor[1]+1);
+            //document.getElementById("p"+(coor[0]*grid.cols+coor[1]+1)).style.color="black";
+            oele.style.backgroundColor="white";
+            nele.style.backgroundColor="black";
+            document.getElementById("p"+ro.substring(4,ro.length)).innerHTML=temp;
+            document.getElementById("p"+ro.substring(4,ro.length)).style.color="white";
+            grid.dest[coor[2]]=[i,j];
+            if(grid.calculated){
+                QSearch(grid.start[0],grid.start[1],1);
+            }
+             
+            
+        }
+        else if(obst&&nele.style.backgroundColor!="red"&&nele.style.backgroundColor!="black"&&nele.style.backgroundColor!="gray"){
+            nele.style.backgroundColor="gray";
+            if(grid.calculated){
+                QSearch(grid.start[0],grid.start[1],1);
+            }
+            
+        }
+        else if(clear&&nele.style.backgroundColor=="gray"){
+            nele.style.backgroundColor="white";
+
+            if(grid.calculated){
+                QSearch(grid.start[0],grid.start[1],1);
+            }
+            
+        }
+    
+    }
+    await sleep(10);
+    
+}
+
+
 function mouseDown(){
     isdown = true;
 }
