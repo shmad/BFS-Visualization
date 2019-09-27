@@ -360,7 +360,7 @@ async function changeCellT(event){
         }
     
     }
-    await sleep(10);
+    
     
 }
 
