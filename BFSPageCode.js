@@ -974,7 +974,7 @@ function getClosest(r,c){
     var index;
     var i = 0;
     for(i;i<grid.dest.length;i++){
-        if(Math.sqrt(Math.pow((r-grid.dest[i][0]),2)+Math.pow((c-grid.dest[i][1]),2)<dist)){
+        if(Math.sqrt(Math.pow((r-grid.dest[i][0]),2)+Math.pow((c-grid.dest[i][1]),2))<dist){
             index = i;
             dist = Math.sqrt(Math.pow(r-grid.dest[i][0],2)+Math.pow(c-grid.dest[i][1],2));
         }
